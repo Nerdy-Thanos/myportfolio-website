@@ -1,9 +1,4 @@
 
-*.csh
 website/bin
-*.ps1
-website/bin/f2py
-*.pyc
-*.10
 website/lib
 website/pyvenv.cfg
