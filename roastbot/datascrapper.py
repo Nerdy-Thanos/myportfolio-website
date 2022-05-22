@@ -1,32 +1,29 @@
-import tweepy
 import pandas as pd
 import praw
 
 class FetchData(object):
+	def fetch_reddit_data():
+		reddit_api_key = "6pT8rJ3M7DJSiZ7fOxU0Eg"
+		reddit_api_key_secret = "QVACoIC-HstocS-DTegj8URIsEfl6w"
+		user_agent = "my app"
 
-    #API KEYS
-    twitter_api_key = "0YdBcutzCNYC9zFasuB6ok88G"
-    twitter_api_key_secret = "f1TYaTTBJZuWtcghqVS3YlhkT4uWmYA2AACByHdo4hGKvDiZAU"
+		reddit = praw.Reddit(
+			client_id=reddit_api_key,
+			client_secret=reddit_api_key_secret,
+			user_agent=user_agent
+		)
+		subreddit = reddit.subreddit("RoastMe")
+		print(subreddit.title)
 
-    reddit_api_key = "6pT8rJ3M7DJSiZ7fOxU0Eg"
-    reddit_api_key_secret = "QVACoIC-HstocS-DTegj8URIsEfl6w"
+		comments=[]
+		for post in subreddit.top(limit=2):
+			post.comments.replace_more(limit=None)
+			for top_level_comment in post.comments:
+				comments.append(top_level_comment.body)
+			print("fetching comments from",post)
+		print(comments)
+		return comments
 
-    def fetch_twitter(api, api_secret, count):
-        #Returns a list of tweet text fetched from twitter
-        #Authentication
-        auth = tweepy.OAuthHandler(api, api_secret)
-        api = tweepy.API(auth=auth, wait_on_rate_limit=True)
+comments_list = FetchData.fetch_reddit_data()
 
-        query = "#roasts -filter:retweets"
-
-        tweets = tweepy.Cursor(api.search_tweets, 
-                                q = query,
-                                lang = "en").items(count)
-        tweet_text = []
-
-        for tweet in tweets:
-            tweet_text.append(tweet.text)
-        return tweet_text
-    
-    def fetch_reddit():
 
