@@ -2,3 +2,4 @@
 website/bin
 website/lib
 website/pyvenv.cfg
+*.csv

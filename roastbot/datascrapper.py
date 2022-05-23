@@ -16,7 +16,7 @@ class FetchData(object):
 		print(subreddit.title)
 
 		comments=[]
-		for post in subreddit.top(limit=2):
+		for post in subreddit.hot(limit=2):
 			post.comments.replace_more(limit=None)
 			for top_level_comment in post.comments:
 				comments.append(top_level_comment.body)
@@ -25,5 +25,8 @@ class FetchData(object):
 		return comments
 
 comments_list = FetchData.fetch_reddit_data()
+commentsdf = pd.DataFrame(comments_list)
+commentsdf.to_csv("comments.csv")
+
 
 
