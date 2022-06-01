@@ -4,3 +4,4 @@ website/lib
 website/pyvenv.cfg
 *.csv
 *.DS_Store
+*.1
