@@ -1,13 +1,28 @@
 import torch
-from torch.nn import functional
 import platform
-from torchvision import datasets
+from torchvision import models
 
 #Checking platform and device
 print(platform.platform())
 print(torch.has_mps)
 
-#Creating the model class
-class BaseModel(object):
+#Loading pre-trained fasterRCNN model
+class Model(object):
+
     def __init__(self) -> None:
+        pass
+    
+    def make_model():
+        model = models.detection.fasterrcnn_resnet50_fpn(pretrained=False, 
+                                                num_classes=20, 
+                                                progress=True,
+                                                pretrained_backbone=True)
+        return model
+
+
+        
+        
+
+
+
          
