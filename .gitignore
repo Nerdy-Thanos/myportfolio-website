@@ -5,3 +5,5 @@ website/pyvenv.cfg
 *.csv
 *.DS_Store
 *.1
+.vscode/settings.json
+pascal
