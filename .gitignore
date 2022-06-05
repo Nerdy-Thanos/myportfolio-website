@@ -8,3 +8,4 @@ website/pyvenv.cfg
 .vscode/settings.json
 pascal_train
 pascal_test
+*.pyc
