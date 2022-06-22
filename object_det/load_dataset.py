@@ -15,12 +15,12 @@ class ObjectDetectionDataset(Dataset):
 		self.transform = transform
 
 		self.images = [os.listdir(self.img_path)]
-		self.allimgs = [i for i in glob.glob(f"{self.img_path}/*")]
+		self.allimgs = (i for i in glob.glob(f"{self.img_path}/*"))
 		self.anno = [f for f in glob.glob(f"{self.anno_path}/*")]
 
 	def __getitem__(self, i):
 		# Read image
-		image = Image.open(self.images[i], mode='r')
+		image = Image.open(self.allimgs[i], mode='r')
 		image = image.convert('RGB')
 
 		# Read objects in this image (bounding boxes, labels, difficulties)
