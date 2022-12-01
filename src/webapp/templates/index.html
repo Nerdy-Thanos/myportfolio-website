@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="main-content">
+    <header class="container header active" id="home">
+        <div class="header-content">
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="{{ url_for('static', filename='img/display_pic.png') }}" alt="">
+                </div>
+            </div>
+            <div class="right-header">
+                <h1 class="name">
+                    Hi, I'm <span>Vignesh Malhotra Girish.</span>
+                    A Machine Learning Data Wiz.
+                </h1>
+                <p>
+                    I'm a Machine Learning Data Engineer with three years of experience in analysing large data sets 
+                    and solving key business problems with data-driven solutions. Proficient in using ETL methods to
+                    extract large volumes of Data for processing and building end-to-end pipelines for production level 
+                    Machine Learning models.
+                </p>
+                <div class="btn-con">
+                    <a href="{{ url_for('DownloadResume') }}" class="main-btn">
+                        <span class="btn-text">Download CV</span>
+                        <span class="btn-icon"><i class="fas fa-download"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="container about" id="about">
+            <div class="main-title">
+                <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
+            </div>
+            <div class="about-container">
+                <div class="left-about">
+                    <h4>Information About me</h4>
+                    <p>
+                        With 3+ of experince building data pipelines, training machine learning models, building end-to-end applications and deploying the applications and models on cloud servers across multiple roles, I currently work as a Data Engineer at Adsum Technologies, London where my responsibilities include
+                        Creating data pipelines on <span class="highlight-text"> Apache Airflow</span>, deploying applications on <span class="highlight-text">AWS</span>,
+                        writing production level backend code in <span class="highlight-text"> Python</span> and query required data in <span class="highlight-text">SQL</span> and <span class="highlight-text">PostgreSQL</span> databases.
+                        <br><br>My previous role at CavinKare, India was more focused on Machine Learning and Data Science where daily responsibilities included collecting, cleaning and processing data to train ML and Deep Learning models on <span class="highlight-text">Tensorflow</span>, <span class="highlight-text">Pytorch</span> and other frameworks.
+                        Communication with management and stakeholders was a key part of the role wherein insights generated from data were visualised in interactive dashboards using <span class="highlighted-text">Power BI</span> the business to make actionable insights. 
+                        <br><br> I am looking for my next challenge in the data domain in roles like <span class="highlight-text">Data Engineer</span>,
+                        <span class="highlight-text">Data Science</span>, <span class="highlight-text">Machine Learning</span>, and <span class="highlight-text">Data Analysis</span>.
+                        <br><br> I am currently on a <span class="highlight-text">Skilled Worker Visa</span> sponsored by current employer and will require visa sponsorship for a new role.
+                    </p>
+                    <div class="btn-con">
+                        <a href="#" class="main-btn">
+                            <span class="btn-text">Download CV</span>
+                            <span class="btn-icon"><i class="fas fa-download"></i></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="right-about">
+                    <div class="about-item">
+                        <div class="abt-text">
+                            <p class="large-text">7+ Projects</p>
+                            <p class="small-text"><br> Deployed and used in Production to date</p>
+                            <br><br><p class="small-text">1. Accurately calculate VAT returns by parsing company transactions for VAT data (VAT product at Adsum Technologies)</p>
+                            <br><br><p class="small-text">2. Create an <span class="highlight-text"> end-to-end lead/revenue generation tool</span> that can parse company financial data to identify suitable users for the above VAT product (Adsum Technologies)</p>
+                            <br><br><p class="small-text">3. Build, train and deploy a <span class="highlight-text"> computer vision model </span> to monitor safety standards followed by employees at CavinKare's Factory outlets (CavinKare)</p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text">
+                            <p class="large-text">3+</p>
+                            <p class="small-text">Years of <br /> experience across two roles- </p><br><br><p class="small-text"> 1. <span class="highlight-text"> Data Engineer</span> at Adsum Technologies, London (September 2022 - Present)</p>
+                            <br><br><p class="small-text"> 2. <span class="highlight-text"> Machine Learning Engineer</span> at CavinKare, India (June 2019 - August 2021)</p>
+                            <br><br><p class="small-text"> 2. <span class="highlight-text"> Machine Learning Intern</span> at CavinKare, India (Jan 2019 - Jule 2019)</p>
+                        </div>
+                    </div>
+                    <div class="about-item">
+                        <div class="abt-text">
+                            <p class="large-text">£200,000+</p>
+                            <p class="small-text">Estimated Revenue generated by accurately calculating <span class="highlight-text">tax amount</span> values for tax returns 
+                            saving the company losses when lending money to other SME's</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats">
+                <h4 class="stat-title">My Skills</h4>
+                <div class="progress-bars">
+                    <div class="progress-bar">
+                        <p class="prog-title">Python</p>
+                        <div class="progress-con">
+                            <p class="prog-text">95%</p>
+                            <div class="progress">
+                                <span class="python"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">ETL/ELT</p>
+                        <div class="progress-con">
+                            <p class="prog-text">85%</p>
+                            <div class="progress">
+                                <span class="etl"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">SQL(MySQL, PostgreSQL)</p>
+                        <div class="progress-con">
+                            <p class="prog-text">85%</p>
+                            <div class="progress">
+                                <span class="sql"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">Big Data Frameworks (Spark, Hadoop, PySpark)</p>
+                        <div class="progress-con">
+                            <p class="prog-text">75%</p>
+                            <div class="progress">
+                                <span class="bd"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">Azure (DataBricks, ML Studio)</p>
+                        <div class="progress-con">
+                            <p class="prog-text">60%</p>
+                            <div class="progress">
+                                <span class="azure"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">AWS (S3, IAM, EC2)</p>
+                        <div class="progress-con">
+                            <p class="prog-text">80%</p>
+                            <div class="progress">
+                                <span class="aws"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">Tensorflow/PyTorch</p>
+                        <div class="progress-con">
+                            <p class="prog-text">90%</p>
+                            <div class="progress">
+                                <span class="tf"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <p class="prog-title">Version Control (Git)</p>
+                        <div class="progress-con">
+                            <p class="prog-text">90%</p>
+                            <div class="progress">
+                                <span class="git"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="stat-title">My Life to date...</h4>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="tl-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <p class="tl-duration">September 2022 - present</p>
+                    <h5>Data Engineer<span> - Adsum Technologies, London</span></h5>
+                    <p>
+                        
+                        <br><br>Building Data Pipelines on Airflow to ensure complete data flow from source to final prediction models.
+                        <br><br>Maintaining the integrity of data with constant monitoring, testing and cleaning pipelines setup in each
+                        stage of the data flow to ensure high quality and complete data is present for the models.
+                        <br><br>Building Text classification models to classify and categorise financial transactions and group them
+                        accordingly.
+                        <br><br>Setting up AWS S3 instances to store and retrieve data from pipelines and update data in storage.
+                        <br><br>Revenue generation tool that parses accounting filings data from CompaniesHouse (gov.uk) to
+                        identify potential leads for the marketing team and help with data-driven marketing.
+                        
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="tl-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <p class="tl-duration">June 2019 - August 2021</p>
+                    <h5>Machine Learning Engineer<span> - CavinKare, India</span></h5>
+                    <p>
+                        <br><br> Implemented a deep learning-based face-recognition attendance system to replace traditional biometrics and scaled it up to recognise up to 500 employees.
+                        <br><br> Built and deployed a computer-vision pipeline with a consistent accuracy of around 92% on Microsoft Azure to monitor employee safety and report hazards thus reducing off-time security load.
+                        <br><br> Developed a parsing tool to generate structured data from unstructured purchase orders and bills using OCR techniques and text similarity for validation.
+                        <br><br> Worked closely with the team and upper management to build a chatbot using Microsoft LUIS to answer employee queries about company policies.
+                        <br><br> Analysed sales and logistics data using interactive data visualization to identify seasonality and trends to predict high demand products and peak times.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="tl-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <p class="tl-duration">September 2021 - September 2022</p>
+                    <h5>MSc in Data Science<span> - University of Glasgow</span></h5>
+                    <p>
+                        <br><br> 2nd Place in Kaggle competition to detect and classify Cancer cells using PyTorch
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <div class="tl-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <p class="tl-duration">June 2015 - June 2019</p>
+                    <h5>Bachelors Degree in Computer Science<span> - SRM University</span></h5>
+                    <p>
+                        Graduated First Class (7.7/10 GPA)
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="container" id="portfolio">
+            <div class="main-title">
+                <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
+            </div>
+            <p class="port-text">
+                Here are some of the projects I've built across multiple roles and multiple programming Languages!
+            </p>
+            <div class="portfolios">
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port1.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port2.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port3.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port4.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port5.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port2.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='img/port7.jpg') }}" alt="">
+                    </div>
+                    <div class="hover-items">
+                        <h3>Project Source</h3>
+                        <div class="icons">
+                            <a href="#" class="icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="icon">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container contact" id="contact">
+            <div class="contact-container">
+                <div class="main-title">
+                    <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
+                </div>
+                <div class="contact-content-con">
+                    <div class="left-contact">
+                        <h4>Contact me here</h4>
+                        <p>
+                            If you liked my profile or found anything interesting, Please don't hesitate to reach out!
+                        </p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Location: </span>
+                                </div>
+                                <p>
+                                     Glasgow, United Kingdom
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email: </span>
+                                </div>
+                                <p>
+                                    <span> vignesh.malhotra15@gmail.com</span>
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>Education: </span>
+                                </div>
+                                <p>
+                                    <span> University of Glasgow, United Kingdom</span>
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>Mobile Number: </span>
+                                </div>
+                                <p>
+                                    <span> 07760973695</span>
+                                </p>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon">
+                                    <i class="fas fa-globe-africa"></i>
+                                    <span>Languages: </span>
+                                </div>
+                                <p>
+                                    <span> English, Hindi, Tamil, Japanese</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="contact-icons">
+                            <div class="contact-icon">
+                                <a href="www.facebook.com" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" target="_blank">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="controls">
+        <div class="control active-btn" data-id="home" >
+            <i class="fas fa-home"></i>
+        </div>
+        <p class="highlight-text"> Home</p>
+        <div class="control" data-id="about">
+            <i class="fas fa-user"></i>
+        </div>
+        <p class="highlight-text"> My Details</p>
+        <div class="control" data-id="portfolio">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <p class="highlight-text"> Checkout my Projects!</p>
+        <div class="control" data-id="contact">
+            <i class="fas fa-envelope-open"></i>
+        </div>
+        <p class="highlight-text"> Contact Me!</p>
+    </div>
+
+    <div class="theme-btn">
+        <i class="fas fa-adjust"></i>
+    </div>
+   
+    <script src="{{ url_for('static',filename='app.js') }}"></script>
+</body>
+</html>

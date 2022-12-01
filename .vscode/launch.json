@@ -10,14 +10,13 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "src/main.py",
+                "FLASK_APP": "src/webapp/main.py",
                 "FLASK_DEBUG": "1"
             },
             "args": [
                 "run",
                 "--no-debugger",
-                "--no-reload",
-                "--port=5000"
+                "--no-reload"
             ],
             "jinja": true,
             "justMyCode": true
