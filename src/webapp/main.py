@@ -1,8 +1,10 @@
 import random
+
+from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
-from flask import render_template,request
+from flask import render_template,request, send_from_directory, send_file
 
 app = create_app()
 
@@ -12,6 +14,7 @@ def hello():
 
 @app.route("/ParseFilingsDocuments",methods=["GET","POST"])
 def ParseFilingsDocuments():
+    clean_output()
     if request.method=="POST":
         company_number=None
         if request.form["submit"]=="single":
@@ -22,9 +25,9 @@ def ParseFilingsDocuments():
         return render_template('filings_table.html',  tables=[filings_data.to_html(classes='data')], titles=filings_data.columns.values)
     return render_template("filings.html")
 
-@app.route("/DownloadFilingPDF")
+@app.route("/DownloadFilingPDF", methods=["GET"])
 def DownloadFilingPDF():
-    return None
+    return send_file("static/output/temp.pdf", as_attachment=True,download_name="filing_doc.pdf")
 
 if __name__=="__main__":
     app.run()

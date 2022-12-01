@@ -16,7 +16,7 @@ def convert_to_image(path):
     vat_debtor, vat_creditor = DataFrame(), DataFrame() 
     total_revenue, total_turnover = DataFrame(), DataFrame()
     possible_director_pages = [1,2]
-    img = convert_from_bytes(path, dpi=400, output_folder="output")
+    img = convert_from_bytes(path, dpi=400, output_folder="src/webapp/static/output")
 
     for page_number, page_data in enumerate(img):
         print(f"EXTRACTING PAGE NUMBER: {page_number}")

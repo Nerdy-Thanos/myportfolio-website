@@ -36,20 +36,20 @@
                     <form action="{{ url_for('ParseFilingsDocuments') }}" method="post">
                         <label for="CompanyNumber">Enter Company Number to fetch document:</label>
                         <input type="text" id="CompanyNumber" name="cn" placeholder="CompanyNumber">
-                        <button type="submit" name="submit" value="single" onclick="loading();"> Parse </button>
+                        <button class="main-btn" type="submit" name="submit" value="single"> <span class="btn-text">Parse</span> </button>
                         <label for="CompanyNumber">Or parse data of a random existing company</label>
-                        <button type="submit" name="submit" value="random" onclick="loading();"> Random Company </button>
+                        <button class="main-btn" type="submit" name="submit" value="random"> <span class="btn-text"> Random Company </span></button>
                     </form>
                 </div>  
             </div>
         </div>
         <div class="section">
             <p>
-                Tech Stack: <br><br>
+                Tech Stack: <br>
                 Python - Backend processing<br>
                 Tesseract - Optical Character Recognition
                 <br><br>
-                API calls:<br><br>
+                API calls:<br>
                 REST API calls to CompaniesHouse<br>
                 REST API calls to Python Backend from Flask
             </p>
