@@ -70,6 +70,10 @@ section {
   color: var(--color-secondary);
   font-weight: 700;
 }
+.highlight-text-non {
+  color: var(--color-primary);
+  font-weight: 700;
+}
 
 .styled-table {
   border-collapse: collapse;
