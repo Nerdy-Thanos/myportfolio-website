@@ -66,6 +66,11 @@ section {
   padding: 3rem 18rem;
 }
 
+.highlight-text {
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
 .styled-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -201,7 +206,7 @@ form {
   height: 90%;
   width: 68%;
   margin-left: 4rem;
-  background-color: var(--color-black);
+  background-color: var(--color-white);
   transition: all 0.4s ease-in-out;
 }
 .header-content .left-header .image img {
@@ -209,7 +214,6 @@ form {
   height: 100%;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
-  filter: grayscale(100%);
 }
 .header-content .left-header .image img:hover {
   filter: grayscale(0);
@@ -334,23 +338,37 @@ form {
   transition: all 0.4s ease-in-out;
   width: 60%;
 }
-.about-stats .progress-bars .progress-bar .progress-con .progress .html {
-  width: 80%;
-}
-.about-stats .progress-bars .progress-bar .progress-con .progress .css {
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .python {
   width: 95%;
 }
-.about-stats .progress-bars .progress-bar .progress-con .progress .js {
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .etl {
+  width: 85%;
+}
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .sql {
+  width: 85%;
+}
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .bd {
   width: 75%;
 }
-.about-stats .progress-bars .progress-bar .progress-con .progress .react {
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .azure {
   width: 60%;
 }
-.about-stats .progress-bars .progress-bar .progress-con .progress .node {
-  width: 87%;
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .aws {
+  width: 80%;
 }
-.about-stats .progress-bars .progress-bar .progress-con .progress .python {
-  width: 70%;
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .tf {
+  width: 90%;
+}
+
+.about-stats .progress-bars .progress-bar .progress-con .progress .git {
+  width: 90%;
 }
 
 .stat-title {

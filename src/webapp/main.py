@@ -4,7 +4,7 @@ from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
-from flask import render_template,request, send_from_directory, send_file
+from flask import render_template,request, send_from_directory
 
 app = create_app()
 
@@ -27,7 +27,12 @@ def ParseFilingsDocuments():
 
 @app.route("/DownloadFilingPDF", methods=["GET"])
 def DownloadFilingPDF():
-    return send_file("static/output/temp.pdf", as_attachment=True,download_name="filing_doc.pdf")
+    return send_from_directory("static","output/temp.pdf", as_attachment=True,download_name="filing_doc.pdf")
+
+@app.route("/DownloadResume", methods=["GET"])
+def DownloadResume():
+    return send_from_directory("static","resume/Vignesh_Resume.pdf", as_attachment=True, download_name="Vignesh_Resume.pdf")
+
 
 if __name__=="__main__":
     app.run()
