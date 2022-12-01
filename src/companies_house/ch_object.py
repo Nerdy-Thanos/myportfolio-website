@@ -24,7 +24,7 @@ class CompaniesHouseService:
     def __init__(
         self,
         ch_number: str,
-        key: str = os.environ.get("COMPANIES_HOUSE_SERVICE_KEY"),
+        key: str = 'wSuDcPn_U0376euJz2zJmrZoYePPLXCjvM2OMuAJ',
         time_between_requests: float = 0.5,
     ) -> None:
         """

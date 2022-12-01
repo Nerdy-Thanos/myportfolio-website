@@ -66,6 +66,11 @@ section {
   padding: 3rem 18rem;
 }
 
+form { 
+  margin: 0 auto; 
+  width:250px;
+  }
+
 .container {
   display: none;
   transform: translateY(-100%) scale(0);

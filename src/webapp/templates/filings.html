@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="main-content">
+
+    <main>  
+        <div class="section">
+            <h1 class="intro"> Parse CompaniesHouse API data and generate dataset.
+            </h1>
+            <p><br><br><br>
+                The purpose of this project is to identify different types of companies all over the UK
+                and generate a dataset to analyse their financial performance over the current and previous year.
+                The final generated dataset can be used to cluster companies based on revenue/performance, predict a 
+                company's future performance and so on. This project covers the entire parsing pipeline and converts raw pdf
+                information into clean and usable data.
+            </p> <br><br><br>
+            <p> The application connects to the CompaniesHouse Platform (Gov UK) and fetches the
+                filings documents (PDF files). The files are then parsed for the required information. The time taken 
+                depends on the number of pages.
+                <br><br>
+                It takes approximately 30-40 seconds to process and extract the data, so please be patient :)
+            </p><br><br>
+            <div class="section">   
+                <div class="form">
+                    <form action="{{ url_for('ParseFilingsDocuments') }}" method="post">
+                        <label for="CompanyNumber">Enter Company Number to fetch document:</label>
+                        <input type="text" id="CompanyNumber" name="cn" placeholder="CompanyNumber">
+                        <button type="submit" name="submit" value="single" onclick="loading();"> Parse </button>
+                        <label for="CompanyNumber">Or parse data of a random existing company</label>
+                        <button type="submit" name="submit" value="random" onclick="loading();"> Random Company </button>
+                    </form>
+                </div>  
+            </div>
+        </div>
+        <div class="section">
+            <p>
+                Tech Stack: <br><br>
+                Python - Backend processing<br>
+                Tesseract - Optical Character Recognition
+                <br><br>
+                API calls:<br><br>
+                REST API calls to CompaniesHouse<br>
+                REST API calls to Python Backend from Flask
+            </p>
+        </div>
+    </main>
+
+    <div class="controls">
+        <div class="control active-btn">
+            <a href="{{ url_for('hello') }}">
+            <i class="fas fa-home"></i>
+            </a>
+        </div>
+    </div>
+    <div class="theme-btn">
+        <i class="fas fa-adjust"></i>
+    </div>
+    <script src="{{ url_for('static',filename='app.js') }}"></script>
+    
+</body>
+</html>

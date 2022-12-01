@@ -6,7 +6,8 @@ from ..ch_object import CompaniesHouseService
 import os
 
 def extract_filings_documents(company_number):
-
+    if not company_number:
+        return None
     ch = CompaniesHouseService(company_number)
     print(f"FETCHING BYTES FOR COMPANY NUMBER: {company_number}")
     docs_bytes = extract_filing_details(ch, company_number)
@@ -19,7 +20,7 @@ def extract_filings_documents(company_number):
     for file in files:
         if os.path.exists(path+file):
             os.remove(path+file)
-    return ocr_df
+    return ocr_df.T
     
 def ocr_all_filings(bytes, company_number):
 
