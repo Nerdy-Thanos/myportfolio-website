@@ -22,7 +22,7 @@ def ParseFilingsDocuments():
         if request.form["submit"]=="random":
             company_number=random.choice(random_company_list)
         filings_data = extract_filings_documents(company_number)
-        return render_template('filings_table.html',  tables=[filings_data.to_html(classes='data')], titles=filings_data.columns.values)
+        return render_template('filings_table.html',  tables=[filings_data.to_html(classes='styled-table')], titles=filings_data.columns.values)
     return render_template("filings.html")
 
 @app.route("/DownloadFilingPDF", methods=["GET"])
