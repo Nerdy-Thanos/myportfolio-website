@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="main-content">
+
+    <main>  
+        <div class="section">
+            <h1 class="intro"> Viggy- A Simple Conversational Chatbot.
+            </h1>
+            <div id="header">
+                <p class="highlight-text"><span>Hi! I'm Viggy! Nice to Meet you.</span></p>
+                </div>
+                <div id="userInput">
+                <input id="textInput" type="text" name="msg" placeholder="Message">
+                <input id="buttonInput" type="submit" value="Send">
+                </div>
+                <script>
+                function getBotResponse() {
+                var rawText = $("#textInput").val();
+                var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+                $("#textInput").val("");
+                $("#chatbox").append(userHtml);
+                document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+                $.get("/ViggyBotResponse", { msg: rawText }).done(function(data) {
+                var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+                $("#chatbox").append(botHtml);
+                document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+                });
+                }
+                $("#textInput").keypress(function(e) {
+                if(e.which == 13) {
+                getBotResponse();
+                }
+                });
+                $("#buttonInput").click(function() {
+                getBotResponse();
+                })
+                </script>
+        </div>
+        <div class="section">
+            <p>
+                Tech Stack: <br>
+                Python - Backend processing<br>
+                Chatterbot - Simple Light weight chatbot for conversations
+                <br><br>
+                API calls:<br>
+                REST API calls to CompaniesHouse<br>
+                REST API calls to Python Backend from Flask
+            </p>
+        </div>
+    </main>
+
+    <div class="controls">
+        <div class="control active-btn">
+            <a href="{{ url_for('hello') }}">
+            <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <p class="highlight-text"> Home</p>
+    </div>
+    <div class="theme-btn">
+        <i class="fas fa-adjust"></i>
+    </div>
+    <script src="{{ url_for('static',filename='app.js') }}"></script>
+    
+</body>
+</html>

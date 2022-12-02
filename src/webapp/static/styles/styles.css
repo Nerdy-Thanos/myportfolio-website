@@ -84,7 +84,7 @@ section {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .styled-table thead tr {
-  background-color: #009879;
+  background-color: var(--color-secondary);
   color: #ffffff;
   text-align: left;
 }
@@ -1007,6 +1007,63 @@ form {
   .main-title h2 .bg-text {
     font-size: 4rem;
   }
+}
+
+#chatbox
+{
+background-color: var(--color-primary);
+margin-left: auto;
+margin-right: auto;
+width: 40%;
+margin-top: 60px;
+}
+#userInput {
+margin-left: auto;
+margin-right: auto;
+width: 40%;
+margin-top: 60px;
+}
+#textInput {
+width: 87%;
+border: none;
+border-bottom: 3px solid #009688;
+font-family: monospace;
+font-size: 17px;
+}
+#buttonInput {
+padding: 3px;
+font-family: monospace;
+font-size: 17px;
+}
+.userText {
+color: var(--color-secondary);
+font-family: monospace;
+font-size: 17px;
+text-align: right;
+line-height: 30px;
+}
+.userText span {
+background-color: var(--color-primary);
+padding: 10px;
+border-radius: 2px;
+}
+.botText {
+color: rgb(22, 232, 106);
+font-family: monospace;
+font-size: 17px;
+text-align: left;
+line-height: 30px;
+}
+.botText span {
+background-color: hsl(69, 93%, 49%);
+padding: 10px;
+border-radius: 2px;
+}
+#tidbit {
+position:absolute;
+bottom:0;
+right:0;
+width: 300px;
 }
 
 /*# sourceMappingURL=styles.css.map */
