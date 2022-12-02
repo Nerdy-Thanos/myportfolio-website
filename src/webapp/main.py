@@ -1,6 +1,7 @@
 import random
+from src.song_bot.fetch_data import make_dataset
 
-from src.song_bot.train import train_model
+from src.song_bot.train import load_latest_model_weights, model_architecture, train_model
 
 from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
@@ -12,7 +13,6 @@ app = create_app()
 
 @app.route("/")
 def hello():
-    train_model()
     return render_template("index.html")
 
 @app.route("/ParseFilingsDocuments",methods=["GET","POST"])
@@ -36,6 +36,12 @@ def DownloadFilingPDF():
 def DownloadResume():
     return send_from_directory("static","resume/Vignesh_Resume.pdf", as_attachment=True, download_name="Vignesh_Resume.pdf")
 
+@app.route("/TrainSongBot")
+def TrainSongBot():
+    max_sequence_len, total_words, input_sequences, one_hot_labels = make_dataset()
+    model = model_architecture(max_sequence_len=max_sequence_len, total_words=total_words) 
+    train_model(model, input_sequences=input_sequences, one_hot_labels=one_hot_labels)
+    return "Model Trained"
 
 if __name__=="__main__":
     app.run()

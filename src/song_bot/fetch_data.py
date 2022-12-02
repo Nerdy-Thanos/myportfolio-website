@@ -35,8 +35,9 @@ def create_lyrics_corpus(dataset, field):
 
 
 def make_dataset():
+
     # Read the dataset from csv - just first 10 songs for now
-    dataset = pd.read_csv('src/song_bot/archive/csv/Maroon5.csv', dtype=str)[:20]
+    dataset = pd.read_csv('src/song_bot/archive/csv/Maroon5.csv', dtype=str).sample(20)
     # Create the corpus using the 'text' column containing lyrics
     corpus = create_lyrics_corpus(dataset, 'Lyric')
     # Tokenize the corpus
