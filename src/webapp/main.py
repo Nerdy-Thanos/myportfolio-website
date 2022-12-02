@@ -1,6 +1,7 @@
 import random
 
-from ..chatbot.viggy_bot import create_bot
+from src.song_bot.train import train_model
+
 from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
@@ -11,6 +12,7 @@ app = create_app()
 
 @app.route("/")
 def hello():
+    train_model()
     return render_template("index.html")
 
 @app.route("/ParseFilingsDocuments",methods=["GET","POST"])
@@ -25,17 +27,6 @@ def ParseFilingsDocuments():
         filings_data = extract_filings_documents(company_number)
         return render_template('filings_table.html',  tables=[filings_data.to_html(classes='styled-table')], titles=filings_data.columns.values)
     return render_template("filings.html")
-
-@app.route("/ViggyBotHome")
-def ViggyBotHome():
-    return render_template("chatbot.html")
-
-@app.route("/ViggyBotResponse")
-def ViggyBotResponse():
-    bot = create_bot()
-    user_text = request.args.get("msg")
-    response = bot.get_response(user_text)
-    return str(response)
 
 @app.route("/DownloadFilingPDF", methods=["GET"])
 def DownloadFilingPDF():
