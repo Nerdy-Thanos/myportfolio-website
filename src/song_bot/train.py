@@ -16,14 +16,14 @@ def model_architecture(max_sequence_len, total_words):
 
 def train_model(model, input_sequences, one_hot_labels):
 
-    checkpoint_path = "training_1/cp.ckpt"
+    checkpoint_path = "training_3/cp.ckpt"
     checkpoint_dir = os.path.dirname(checkpoint_path)
     cp_callback = ModelCheckpoint(filepath=checkpoint_path,
                                                     save_weights_only=True,
                                                     verbose=1)
 
     model.fit(input_sequences, one_hot_labels, batch_size=64 ,epochs=100, verbose=1, callbacks=[cp_callback],)
-    model.save('maroon5.h5')
+    model.save('PostMalone.h5')
 
 def load_latest_model_weights(model):
     checkpoint_path = "training_1/cp.ckpt"
