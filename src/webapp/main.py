@@ -1,7 +1,7 @@
 import random
 from ..song_bot.fetch_data import make_dataset
 
-from ..song_bot.train import load_latest_model_weights, model_architecture, train_model
+from ..song_bot.train import model_architecture, train_model
 
 from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
