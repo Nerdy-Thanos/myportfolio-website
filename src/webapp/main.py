@@ -1,5 +1,6 @@
 import random
 from ..song_bot.fetch_data import make_dataset
+from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 
 from ..song_bot.train import model_architecture, train_model
 
@@ -42,6 +43,12 @@ def TrainSongBot():
     model = model_architecture(max_sequence_len=max_sequence_len, total_words=total_words) 
     train_model(model, input_sequences=input_sequences, one_hot_labels=one_hot_labels)
     return "Model Trained"
+
+@app.route("/SongBotPredict")
+def SongBotPredict():
+    loaded_model = load_saved_model()
+    lyrics = predict_next_words(loaded_model, "postmalone")
+    return lyrics
 
 if __name__=="__main__":
     app.run()
