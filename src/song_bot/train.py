@@ -20,10 +20,10 @@ def train_model(model, input_sequences, one_hot_labels):
     checkpoint_dir = os.path.dirname(checkpoint_path)
     cp_callback = ModelCheckpoint(filepath=checkpoint_path,
                                                     save_weights_only=True,
-                                                    verbose=1)
+                                                    verbose=1, save_freq=5*64)
 
-    model.fit(input_sequences, one_hot_labels, batch_size=64 ,epochs=100, verbose=1, callbacks=[cp_callback],)
-    model.save('PostMalone.h5')
+    model.fit(input_sequences, one_hot_labels, batch_size=64 ,epochs=200, verbose=1, callbacks=[cp_callback],)
+    model.save('ColdPlay.h5')
 
 def load_latest_model_weights(model):
     checkpoint_path = "training_1/cp.ckpt"

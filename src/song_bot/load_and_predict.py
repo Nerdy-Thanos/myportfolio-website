@@ -54,7 +54,7 @@ def make_corpus_for_prediction(type):
 
     path = select_path(type)
     # Read the dataset from csv - just first 10 songs for now
-    dataset = pd.read_csv(path, dtype=str).sample(35)
+    dataset = pd.read_csv(path, dtype=str).head(10)
     # Create the corpus using the 'text' column containing lyrics
     corpus = create_lyrics_corpus(dataset, 'Lyric')
     # Tokenize the corpus
@@ -85,7 +85,7 @@ def preprocess_corpus(corpus, tokenizer, total_words):
     return input_sequences, max_sequence_len, one_hot_labels
 
 def load_saved_model():
-    new_model = load_model('maroon5.h5')
+    new_model = load_model('PostMalone.h5')
     return new_model
 
 def predict_next_words(model, type):
