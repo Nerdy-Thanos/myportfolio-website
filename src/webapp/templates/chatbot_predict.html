@@ -29,6 +29,12 @@
             <br> <br>
             <p class="highlight-text"> {{ lyrics }} </p> 
         </div>
+        <br><br>
+        <div class="btn-con">
+            <a href="{{ url_for('SongBot') }}" class="main-btn">
+                <span class="btn-text">Create Another Song</span>
+            </a>
+        </div>
         <div class="section">
             <p>
                 Tech Stack: <br>
@@ -49,13 +55,6 @@
             </a>
         </div>
         <p class="highlight-text"> Home</p>
-        
-        <div class="control active-btn">
-            <a href="{{ url_for('SongBot') }}">
-            <i class="fas fa-arrow-rotate-right"></i>
-            </a>
-        </div>
-        <p class="highlight-text"> Create another song</p>
     </div>
     <div class="theme-btn">
         <i class="fas fa-adjust"></i>

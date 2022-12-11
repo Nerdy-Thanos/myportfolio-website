@@ -31,8 +31,12 @@
                     alert("Please Enter number of words to generate");
                     return false;
                   }
-                  if (typeof num === 'string' || a instanceof String){
+                  if (num instanceof String){
                     alert("PLease enter a numeric value");
+                    return false;
+                  }
+                  if (lyrics == null || lyrics == "") {
+                    alert("Please Enter starting lyrics");
                     return false;
                   }
                 }
