@@ -14,3 +14,9 @@ website
 .pyc
 .pyc
 src/webapp/__pycache__/main.cpython-310.pyc
+training_2/checkpoint
+training_2/cp.ckpt.data-00000-of-00001
+training_2/cp.ckpt.index
+training_3/cp.ckpt.data-00000-of-00001
+training_3/checkpoint
+training_3/cp.ckpt.index
