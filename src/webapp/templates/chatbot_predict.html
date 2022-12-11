@@ -16,44 +16,20 @@
 <body class="main-content">
 
     <main>  
-        <div class="section">
+        <div id="section">
             <h1 class="intro"> Viggy- A Simple Conversational Chatbot.
             </h1>
             <div class="header">
                 <p class="highlight-text"><span>Hi! I'm Viggy! Nice to Meet you.</span></p>
             </div>
-            <p>Choose the artist whose songs you want to create: </p>
-            <script type="text/javascript">
-                function validateForm() {
-                  var num = document.forms["Form"]["word"].value;
-                  var lyrics = document.forms["Form"]["msg"].value;
-                  if (num == null || num == "") {
-                    alert("Please Enter number of words to generate");
-                    return false;
-                  }
-                  if (typeof num === 'string' || a instanceof String){
-                    alert("PLease enter a numeric value");
-                    return false;
-                  }
-                }
-              </script>
-                <div id="form">
-                    <form onsubmit="return validateForm()" action="{{ url_for('SongBot') }}" method="post" id="Form" name="Form">
-
-                        <label for="artist">Choose an Artist:</label>
-                        <select id="artist" name="artist">
-                        <option value="postmalone">Post Malone</option>
-                        <option value="coldplay">ColdPlay</option>
-                        <option value="maroon5">Maroon5</option>
-                        </select> <br><br>Enter the number of words you want to generate: 
-                        <input type="number" id="word" name="word" min="0" step="1">
-                        <br><br>Enter starting lyrics: 
-                        <input type="text" id="msg" name="msg"><br><br>
-                        <button class="main-btn" type="submit" value="Choose Artist"> <span class="btn-text"> Choose Artist </span></button>
-                    </form>
-                </div>
+            <br><br>
         </div>
-        <div id="section">
+        <div class="section">
+            <p class="highlight-text"> Your {{ artist }} song: </p>
+            <br> <br>
+            <p class="highlight-text"> {{ lyrics }} </p> 
+        </div>
+        <div class="section">
             <p>
                 Tech Stack: <br>
                 Python - Backend processing<br>
@@ -74,6 +50,12 @@
         </div>
         <p class="highlight-text"> Home</p>
         
+        <div class="control active-btn">
+            <a href="{{ url_for('SongBot') }}">
+            <i class="fas fa-arrow-rotate-right"></i>
+            </a>
+        </div>
+        <p class="highlight-text"> Create another song</p>
     </div>
     <div class="theme-btn">
         <i class="fas fa-adjust"></i>

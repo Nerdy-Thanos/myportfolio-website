@@ -84,15 +84,28 @@ def preprocess_corpus(corpus, tokenizer, total_words):
     one_hot_labels = tf.keras.utils.to_categorical(labels, num_classes=total_words)
     return input_sequences, max_sequence_len, one_hot_labels
 
-def load_saved_model():
-    new_model = load_model('PostMalone.h5')
+def select_model_path(type):
+    if type=="maroon5":
+        path = "Maroon5.h5"
+
+    elif type=="postmalone":
+        path = "PostMalone.h5"
+
+    elif type=="coldplay":
+        path = "ColdPlay.h5"
+
+    else:
+        path = None
+    return path
+
+def load_saved_model(type):
+    model_path = select_model_path(type)
+    new_model = load_model(model_path)
     return new_model
 
-def predict_next_words(model, type):
+def predict_next_words(model, type, seed_text, next_words):
     
     max_sequence_len, tokenizer = make_corpus_for_prediction(type)
-    seed_text = "im feeling chills"
-    next_words = 100
 
     for _ in range(next_words):
         token_list = tokenizer.texts_to_sequences([seed_text])[0]

@@ -8,7 +8,7 @@ from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
-from flask import render_template,request, send_from_directory
+from flask import render_template,request, send_from_directory, redirect, url_for
 
 app = create_app()
 
@@ -44,11 +44,23 @@ def TrainSongBot():
     train_model(model, input_sequences=input_sequences, one_hot_labels=one_hot_labels)
     return "Model Trained"
 
-@app.route("/SongBotPredict")
-def SongBotPredict():
-    loaded_model = load_saved_model()
-    lyrics = predict_next_words(loaded_model, "postmalone")
-    return lyrics
+@app.route("/SongBot", methods=["GET", "POST"])
+def SongBot():
+    artist=None
+    if request.method=="POST":
+        artist = request.form["artist"]
+        num_words = request.form["word"]
+        msg = request.form["msg"]
+        return redirect(url_for("SongBotPredict", artist=artist, msg=msg, num_words=num_words))
+    return render_template("chatbot.html", artist=artist)
+
+@app.route("/<artist>/SongBotPredict", methods=["GET","POST"])
+def SongBotPredict(artist):
+    userText = request.args.get('msg')
+    num_words = request.args.get('num_words')
+    loaded_model = load_saved_model(artist)
+    lyrics = predict_next_words(loaded_model, artist, userText, int(num_words))
+    return render_template("chatbot_predict.html",lyrics=lyrics, artist=artist)
 
 if __name__=="__main__":
     app.run()
