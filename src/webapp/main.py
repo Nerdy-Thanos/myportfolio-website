@@ -1,30 +1,31 @@
 import base64
-from io import StringIO
-import io
 import random
-from PIL import Image
+import time
 from numpy import array
-
 from ..mask_detection.test import load_models, recognise_mask
 from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
 from ..song_bot.train import model_architecture, train_model
 import logging
-from .helper_functions import clean_output
+from .helper_functions import clean_output, moving_average, readb64
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
 from flask import render_template,request, send_from_directory, redirect, url_for
 import cv2
 from flask_socketio import SocketIO, emit
+from engineio.payload import Payload
+from threading import Thread
 
 app = create_app()
 
 app.logger.addHandler(logging.StreamHandler(stdout))
 app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
+Payload.max_decode_packets = 2048
 socketio = SocketIO(app)
+
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
@@ -43,6 +44,8 @@ def ParseFilingsDocuments():
 			company_number = request.form.get("cn")
 		if request.form["submit"]=="random":
 			company_number=random.choice(random_company_list)
+		filings_thread = Thread(target=extract_filings_documents, args=(company_number,))
+		filings_thread.start()
 		filings_data = extract_filings_documents(company_number)
 		return render_template('filings_table.html',  tables=[filings_data.to_html(classes='styled-table')], titles=filings_data.columns.values)
 	return render_template("filings.html")
@@ -84,29 +87,38 @@ def SongBotPredict(artist):
 def FaceMasks():
 	return render_template("mask.html")
 
+@socketio.on('catch-frame')
+def catch_frame(data):
+
+	emit('response_back', data)  
+
 @socketio.on('image')
 def image(data_image):
-	sbuf = StringIO()
-	sbuf.write(data_image)
+	time.sleep(0.5)
+	read_thread = Thread(target=readb64, args=(data_image,))
+	load_thread = Thread(target=load_models, args=())
 
-	# decode and convert into image
-	b = io.BytesIO(base64.b64decode(data_image))
-	pimg = Image.open(b)
+	read_thread.start()
+	load_thread.start()
 
-	## converting RGB to BGR, as opencv standards
-	frame = cv2.cvtColor(array(pimg), cv2.COLOR_RGB2BGR)
-	## converting RGB to BGR, as opencv standards
+	frame = (readb64(data_image))
+	
 	face_detection_model, mask_detection_model = load_models()
 
+	predict_thread = Thread(target=recognise_mask, args=(frame, face_detection_model, mask_detection_model, ))
+	predict_thread.start()
+	predict_thread.join()
+
 	output_frame = recognise_mask(frame, face_detection_model, mask_detection_model)
+	imgencode = cv2.imencode('.jpeg', output_frame,[cv2.IMWRITE_JPEG_QUALITY,40])[1]
 
 	# base64 encode
-	stringData = base64.b64encode(output_frame).decode('utf-8')
-	b64_src = 'data:image/jpg;base64,'
+	stringData = base64.b64encode(imgencode).decode('utf-8')
+	b64_src = 'data:image/jpeg;base64,'
 	stringData = b64_src + stringData
 
 	# emit the frame back
 	emit('response_back', stringData)
-
+	
 if __name__=="__main__":
-	socketio.run()
+	socketio.run(processes=8)

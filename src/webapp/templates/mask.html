@@ -20,29 +20,24 @@
         </h1>
         <p><br><br><br>
             The purpose of this project is to detect if a person is wearing a face mask or not. Since the model is deployed
-            on Server, Performance issues might occur in terms of low fps. 
+            on Server, Performance issues might occur in terms of low fps. Please wait for 10-15 seconds for the camera to start
+            and models to load! The application will be optimised better in the future!
             <br>
-            Do try out different possibilities of face masks to give the model a run for its money!
+            Do try out different types of face masks to give the model a run for its money!
         </p> <br><br><br>
         <p> Inspiration to build this project came from the tragic years when COVID-19 was at its peak. 
             A simple application like this one could automate workspace/public space safety checks where face masks 
             could automatically be checked at entry points of venues <br><br>
-            <div class="btn-con">
-                <a href="{{ url_for('FaceMasks') }}" class="main-btn">
-                    <span class="btn-text">stop!</span>
-                </a>
-            </div>
         </p><br><br>
         <div id="container">
             <video autoplay playsinline id="videoElement"></video>
             <canvas id="canvas"  width="400" height="300"></canvas>
-            </div>
-        
+            <h1>video</h1>
             <div class = 'video'>
                 <img id="photo"  width="400"  height="300">
-                <h1>video</h1>
+                
             </div>
-        
+        </div>
             <script type="text/javascript" charset="utf-8">
               
                 var socket = io.connect(window.location.protocol + '//' + document.domain + ':' + location.port);
@@ -70,7 +65,7 @@
                     });
                 }
         
-                const FPS = 6;
+                const FPS = 60;
                 setInterval(() => {
                     width=video.width;
                     height=video.height;

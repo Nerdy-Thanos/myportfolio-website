@@ -133,6 +133,6 @@ def recognise_mask(frame, faceNet, maskNet):
 		)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
 		
-	return cv2.imencode('.jpg', frame)[1].tobytes()
+	return frame
 
 	
