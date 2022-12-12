@@ -3,8 +3,6 @@ from io import StringIO
 import io
 import random
 from PIL import Image
-from ..face_mask.camera import Camera
-from ..face_mask.camera_flip import Flip
 from numpy import array
 from ..face_mask.test import load_models, recognise_mask
 from ..song_bot.fetch_data import make_dataset
@@ -16,10 +14,8 @@ from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
-from flask import render_template,request, send_from_directory, redirect, url_for, Response
+from flask import render_template,request, send_from_directory, redirect, url_for
 import cv2
-import time
-from imutils.video import VideoStream
 from flask_socketio import SocketIO, emit
 
 app = create_app()
@@ -28,7 +24,6 @@ app.logger.addHandler(logging.StreamHandler(stdout))
 app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
 socketio = SocketIO(app)
-camera = Camera(Flip())
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
