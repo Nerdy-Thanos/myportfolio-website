@@ -56,3 +56,6 @@ imutils
 dlib
 opencv-python
 opencv-contrib-python
+flask-socketio
+gevent-websocket
+eventlet

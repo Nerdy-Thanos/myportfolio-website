@@ -66,6 +66,35 @@ section {
   padding: 3rem 18rem;
 }
 
+#container {
+  margin: 0px auto;
+  border: 10px #333 solid;
+}
+#videoElement {
+  width: 640px;
+  height: 480px;
+  display: none;
+  background-color: #666;
+}
+
+#imageElement {
+  width: 640px;
+  height: 480px;
+  background-color: #666;
+}
+
+#canvasElement {
+  width: 640px;
+  height: 480px;
+  border: 1px solid black;
+}
+#photo {
+  width: 640px;
+  height: 480px;
+
+  border: 1px solid black;
+}
+
 .highlight-text {
   color: var(--color-secondary);
   font-weight: 700;
