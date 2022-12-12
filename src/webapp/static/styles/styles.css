@@ -66,6 +66,13 @@ section {
   padding: 3rem 18rem;
 }
 
+#video {
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
+  
+}
+
 #container {
   margin: 0px auto;
   border: 10px #333 solid;
