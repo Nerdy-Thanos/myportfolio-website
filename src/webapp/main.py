@@ -1,14 +1,13 @@
 import base64
 import random
 import time
-from numpy import array
 from ..mask_detection.test import load_models, recognise_mask
 from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
 from ..song_bot.train import model_architecture, train_model
 import logging
-from .helper_functions import clean_output, moving_average, readb64
+from .helper_functions import readb64
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
@@ -37,7 +36,6 @@ def hello():
 
 @app.route("/ParseFilingsDocuments",methods=["GET","POST"])
 def ParseFilingsDocuments():
-	clean_output()
 	if request.method=="POST":
 		company_number=None
 		if request.form["submit"]=="single":
