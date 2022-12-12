@@ -54,8 +54,6 @@ wrapt==1.14.1
 cmake
 imutils
 dlib
-opencv-python
-opencv-contrib-python
 opencv-python-headless
 flask-socketio
 gevent-websocket
