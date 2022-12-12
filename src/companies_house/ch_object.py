@@ -24,7 +24,7 @@ class CompaniesHouseService:
     def __init__(
         self,
         ch_number: str,
-        key: str = 'wSuDcPn_U0376euJz2zJmrZoYePPLXCjvM2OMuAJ',
+        key: str = "wSuDcPn_U0376euJz2zJmrZoYePPLXCjvM2OMuAJ",
         time_between_requests: float = 0.5,
     ) -> None:
         """
@@ -115,7 +115,9 @@ class CompaniesHouseService:
         """
         self._rate_limiting()
 
-        resultQuery = requests.get(url, params=parameters, auth=(self.key, ""), stream=True)
+        resultQuery = requests.get(
+            url, params=parameters, auth=(self.key, ""), stream=True
+        )
         if resultQuery.status_code == 200:
             if extract:
                 try:
@@ -133,7 +135,7 @@ class CompaniesHouseService:
                 f"{explanation} failed with error code: {resultQuery.status_code} | "
                 f"Reason: {resultQuery.reason}"
             )
-            return b''
+            return b""
         return resultQuery.content
 
     def _rate_limiting(self):
