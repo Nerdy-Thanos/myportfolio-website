@@ -7,7 +7,7 @@ from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
 from ..song_bot.train import model_architecture, train_model
 import logging
-from .helper_functions import readb64
+from .helper_functions import clean_output, readb64
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
@@ -36,14 +36,13 @@ def hello():
 
 @app.route("/ParseFilingsDocuments",methods=["GET","POST"])
 def ParseFilingsDocuments():
+	clean_output()
 	if request.method=="POST":
 		company_number=None
 		if request.form["submit"]=="single":
 			company_number = request.form.get("cn")
 		if request.form["submit"]=="random":
 			company_number=random.choice(random_company_list)
-		filings_thread = Thread(target=extract_filings_documents, args=(company_number,))
-		filings_thread.start()
 		filings_data = extract_filings_documents(company_number)
 		return render_template('filings_table.html',  tables=[filings_data.to_html(classes='styled-table')], titles=filings_data.columns.values)
 	return render_template("filings.html")
