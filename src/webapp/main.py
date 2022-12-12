@@ -4,7 +4,8 @@ import io
 import random
 from PIL import Image
 from numpy import array
-from ..face_mask.test import load_models, recognise_mask
+
+from ..mask_detection.test import load_models, recognise_mask
 from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
