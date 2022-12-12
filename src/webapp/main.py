@@ -3,8 +3,8 @@ from io import StringIO
 import io
 import random
 from PIL import Image
-from src.face_mask.camera import Camera
-from src.face_mask.camera_flip import Flip
+from ..face_mask.camera import Camera
+from ..face_mask.camera_flip import Flip
 from numpy import array
 from ..face_mask.test import load_models, recognise_mask
 from ..song_bot.fetch_data import make_dataset
