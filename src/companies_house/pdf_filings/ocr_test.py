@@ -1,7 +1,7 @@
 from pytesseract import image_to_data, Output
 from pandas import DataFrame, concat
 from pdf2image import convert_from_bytes
-from re import IGNORECASE, finditer
+from re import IGNORECASE, finditer, compile
 
 from .consts import get_list_of_coordinates, init_fields
 

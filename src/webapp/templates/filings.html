@@ -32,11 +32,20 @@
                 It takes approximately 30-40 seconds to process and extract the data, so please be patient :)
             </p><br><br>
             <div class="section">   
+                <script type="text/javascript">
+                    function validateForm() {
+                      var company = document.forms["Form"]["cn"].value;
+                      if (company == null || company == "") {
+                        alert("Please Enter Company number. You can look for company number on gov.uk companies house");
+                        return false;
+                      }
+                    }
+                  </script>
                 <div class="form">
-                    <form action="{{ url_for('ParseFilingsDocuments') }}" method="post">
+                    <form action="{{ url_for('ParseFilingsDocuments') }}" method="post" id="Form" name="Form">
                         <label for="CompanyNumber">Enter Company Number to fetch document:</label>
                         <input type="text" id="CompanyNumber" name="cn" placeholder="CompanyNumber">
-                        <button class="main-btn" type="submit" name="submit" value="single"> <span class="btn-text">Parse</span> </button>
+                        <button class="main-btn" type="submit" name="submit" value="single" onclick="return validateForm()"> <span class="btn-text">Parse</span> </button>
                         <label for="CompanyNumber">Or parse data of a random existing company</label>
                         <button class="main-btn" type="submit" name="submit" value="random"> <span class="btn-text"> Random Company </span></button>
                     </form>
