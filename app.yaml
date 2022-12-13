@@ -1,6 +1,6 @@
 runtime: python310
 api_version: 1
-threadsafe: true
+
 
 entrypoint: gunicorn -b :$PORT src.webapp.main:app
 
