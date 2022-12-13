@@ -58,3 +58,4 @@ opencv-python-headless
 flask-socketio
 gevent-websocket
 eventlet
+python-poppler
