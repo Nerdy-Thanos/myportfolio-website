@@ -1,5 +1,4 @@
-from .fetch_data import make_dataset
-import tensorflow as tf
+from tensorflow.train import latest_checkpoint
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Bidirectional
 from tensorflow.keras.callbacks import ModelCheckpoint
@@ -40,7 +39,7 @@ def train_model(model, input_sequences, one_hot_labels):
 def load_latest_model_weights(model):
     checkpoint_path = "training_1/cp.ckpt"
     checkpoint_dir = os.path.dirname(checkpoint_path)
-    latest_cpkt = tf.train.latest_checkpoint(checkpoint_dir)
+    latest_cpkt = latest_checkpoint(checkpoint_dir)
     model.compile(
         loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"]
     )

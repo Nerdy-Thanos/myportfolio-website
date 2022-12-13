@@ -1,8 +1,7 @@
-import pytesseract
+from pytesseract import image_to_data, Output
 from pandas import DataFrame, concat
 from pdf2image import convert_from_bytes
-from PIL import Image
-import re
+from re import IGNORECASE, finditer
 
 from .consts import get_list_of_coordinates, init_fields
 
@@ -36,8 +35,8 @@ def convert_to_image(path):
 
     for page_number, page_data in enumerate(img):
         print(f"EXTRACTING PAGE NUMBER: {page_number}")
-        data = pytesseract.image_to_data(
-            page_data, config="--psm 6", output_type=pytesseract.Output.DATAFRAME
+        data = image_to_data(
+            page_data, config="--psm 6", output_type=Output.DATAFRAME
         )
         data = data.dropna()
 
@@ -178,17 +177,17 @@ def extract_uk_revenue_from_data(data):
     if data.empty:
         return DataFrame()
     notes_index = data.loc[
-        data["text"].str.contains(r"(?:notes)", regex=True, flags=re.IGNORECASE) == True
+        data["text"].str.contains(r"(?:notes)", regex=True, flags=IGNORECASE) == True
     ]
     if not notes_index.empty:
         revenue_index = data.loc[
-            data["text"].str.contains(r"(?:revenue)", regex=True, flags=re.IGNORECASE)
+            data["text"].str.contains(r"(?:revenue)", regex=True, flags=IGNORECASE)
             == True
         ]
         if not revenue_index.empty:
             uk_revenue_df = data.loc[
                 data["text"].str.contains(
-                    r"(?:United|Kingdom)", regex=True, flags=re.IGNORECASE
+                    r"(?:United|Kingdom)", regex=True, flags=IGNORECASE
                 )
                 == True
             ]
@@ -208,17 +207,17 @@ def extract_uk_turnover_from_data(data):
     if data.empty:
         return DataFrame()
     notes_index = data.loc[
-        data["text"].str.contains(r"(?:notes)", regex=True, flags=re.IGNORECASE) == True
+        data["text"].str.contains(r"(?:notes)", regex=True, flags=IGNORECASE) == True
     ]
     if not notes_index.empty:
         turnover_index = data.loc[
-            data["text"].str.contains(r"(?:turnover)", regex=True, flags=re.IGNORECASE)
+            data["text"].str.contains(r"(?:turnover)", regex=True, flags=IGNORECASE)
             == True
         ]
         if not turnover_index.empty:
             uk_turnover_df = data.loc[
                 data["text"].str.contains(
-                    r"(?:United|Kingdom)", regex=True, flags=re.IGNORECASE
+                    r"(?:United|Kingdom)", regex=True, flags=IGNORECASE
                 )
                 == True
             ]
@@ -241,13 +240,13 @@ def extract_vat_debtor_from_data(data):
         data["text"].str.contains(
             r"(?:debtor|debtors|receivables|recoverables)",
             regex=True,
-            flags=re.IGNORECASE,
+            flags=IGNORECASE,
         )
         == True
     ]
     creditor_index = data.loc[
         data["text"].str.contains(
-            r"(?:creditor|creditors|payables)", regex=True, flags=re.IGNORECASE
+            r"(?:creditor|creditors|payables)", regex=True, flags=IGNORECASE
         )
         == True
     ]
@@ -272,7 +271,7 @@ def extract_vat_creditor_from_data(data):
         return DataFrame()
     creditor_index = data.loc[
         data["text"].str.contains(
-            r"(?:creditor|creditors|payables)", regex=True, flags=re.IGNORECASE
+            r"(?:creditor|creditors|payables)", regex=True, flags=IGNORECASE
         )
         == True
     ]
@@ -297,13 +296,13 @@ def extract_total_revenue_from_data(data):
         return DataFrame()
     income_index = data.loc[
         data["text"].str.contains(
-            r"(?:income|earning)", regex=True, flags=re.IGNORECASE
+            r"(?:income|earning)", regex=True, flags=IGNORECASE
         )
         == True
     ]
     if not income_index.empty:
         revenue_df = data.loc[
-            data["text"].str.contains(r"(?:revenue)", regex=True, flags=re.IGNORECASE)
+            data["text"].str.contains(r"(?:revenue)", regex=True, flags=IGNORECASE)
             == True
         ]
         if not revenue_df.empty:
@@ -320,13 +319,13 @@ def extract_total_turnover_from_data(data):
         return DataFrame()
     income_index = data.loc[
         data["text"].str.contains(
-            r"(?:income|earning)", regex=True, flags=re.IGNORECASE
+            r"(?:income|earning)", regex=True, flags=IGNORECASE
         )
         == True
     ]
     if not income_index.empty:
         turnover_df = data.loc[
-            data["text"].str.contains(r"(?:turnover)", regex=True, flags=re.IGNORECASE)
+            data["text"].str.contains(r"(?:turnover)", regex=True, flags=IGNORECASE)
             == True
         ]
         if not turnover_df.empty:
@@ -342,17 +341,17 @@ def extract_cash_balance_from_data(data):
     if data.empty:
         return DataFrame()
     current_index = data.loc[
-        data["text"].str.contains(r"(?:current)", regex=True, flags=re.IGNORECASE)
+        data["text"].str.contains(r"(?:current)", regex=True, flags=IGNORECASE)
         == True
     ]
     if not current_index.empty:
         cash_df = data.loc[
-            data["text"].str.contains(r"(?:cash)", regex=True, flags=re.IGNORECASE)
+            data["text"].str.contains(r"(?:cash)", regex=True, flags=IGNORECASE)
             == True
         ]
         hand_bank = data.loc[
             data["text"].str.contains(
-                r"(?:hand|bank|equivalent)", regex=True, flags=re.IGNORECASE
+                r"(?:hand|bank|equivalent)", regex=True, flags=IGNORECASE
             )
             == True
         ]
@@ -374,12 +373,12 @@ def extract_directors_from_data(data):
         return DataFrame()
     director_index = data.loc[
         data["text"].str.contains(
-            r"(?:director|directors)", regex=True, flags=re.IGNORECASE
+            r"(?:director|directors)", regex=True, flags=IGNORECASE
         )
         == True
     ]
     company_index = data.loc[
-        data["text"].str.contains(r"(?:registered)", regex=True, flags=re.IGNORECASE)
+        data["text"].str.contains(r"(?:registered)", regex=True, flags=IGNORECASE)
         == True
     ]
 
@@ -416,10 +415,10 @@ def extract_cash_values(values: DataFrame, check: bool = False):
 
 
 def get_amount_regex(string, check_flag: bool = False):
-    regex = re.compile("(?:[0-9]{1,3},([0-9]{3},)*[0-9]{3}|(?:-))")
+    regex = compile("(?:[0-9]{1,3},([0-9]{3},)*[0-9]{3}|(?:-))")
     if check_flag:
-        regex = re.compile("(?:[0-9]{1,3},([0-9]{3},)*[0-9]{3}|(?:[0-9]{2,3})|(?:-))")
-    groups = re.finditer(regex, string)
+        regex = compile("(?:[0-9]{1,3},([0-9]{3},)*[0-9]{3}|(?:[0-9]{2,3})|(?:-))")
+    groups = finditer(regex, string)
     cur = None
     prev = None
     amount = []

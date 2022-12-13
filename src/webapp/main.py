@@ -6,21 +6,20 @@ from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
 from ..song_bot.train import model_architecture, train_model
-import logging
+from logging import StreamHandler
 from .helper_functions import clean_output, readb64
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
 from flask import render_template,request, send_from_directory, redirect, url_for
-import cv2
+from cv2 import imencode, IMWRITE_JPEG_QUALITY
 from flask_socketio import SocketIO, emit
 from engineio.payload import Payload
 from threading import Thread
-import cmake
 
 app = create_app()
 
-app.logger.addHandler(logging.StreamHandler(stdout))
+app.logger.addHandler(StreamHandler(stdout))
 app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
 Payload.max_decode_packets = 2048
@@ -108,7 +107,7 @@ def image(data_image):
 	predict_thread.join()
 
 	output_frame = recognise_mask(frame, face_detection_model, mask_detection_model)
-	imgencode = cv2.imencode('.jpeg', output_frame,[cv2.IMWRITE_JPEG_QUALITY,40])[1]
+	imgencode = imencode('.jpeg', output_frame,[IMWRITE_JPEG_QUALITY,40])[1]
 
 	# base64 encode
 	stringData = base64.b64encode(imgencode).decode('utf-8')

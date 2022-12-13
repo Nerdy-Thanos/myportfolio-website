@@ -2,10 +2,11 @@
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
-import numpy as np
+from numpy import array, expand_dims
 
-import imutils
+from imutils import resize
 import cv2
+
 
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
@@ -35,7 +36,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		if confidence > 0.5:
 			# compute the (x, y)-coordinates of the bounding box for
 			# the object
-			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+			box = detections[0, 0, i, 3:7] * array([w, h, w, h])
 			(startX, startY, endX, endY) = box.astype("int")
 
 			# ensure the bounding boxes fall within the dimensions of
@@ -50,7 +51,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			face = cv2.resize(face, (28, 28))
 			face = img_to_array(face)
 			face = preprocess_input(face)
-			face = np.expand_dims(face, axis=0)
+			face = expand_dims(face, axis=0)
 
 			# add the face and bounding boxes to their respective
 			# lists
@@ -62,7 +63,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		# for faster inference we'll make batch predictions on *all*
 		# faces at the same time rather than one-by-one predictions
 		# in the above `for` loop
-		faces = np.array(faces, dtype="float32").squeeze(1)
+		faces = array(faces, dtype="float32").squeeze(1)
 		preds = maskNet.predict(faces, batch_size=32)
 
 	# return a 2-tuple of the face locations and their corresponding
