@@ -14,5 +14,5 @@ COPY . /viggy
 
 ENV FLASK_APP="src/webapp/main.py"
 
-CMD ["python", "-m", "flask", "run", "--port 5002"]
+CMD ["gunicorn", "src.webapp/main:app", "--workers", "1", "--timeout", "360"]
 
