@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10.8-slim-buster
 
 WORKDIR /viggy
 
@@ -9,6 +9,8 @@ ENV PYTHONUNBUFFERED=1
 
 COPY requirements.txt requirements.txt
 RUN python -m pip install -r requirements.txt
+
+COPY . /viggy
 
 ENV FLASK_APP="src/webapp/main.py"
 
