@@ -8,7 +8,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN python -m pip install -r requirements.txt
 
 ENV FLASK_APP="src/webapp/main.py"
 
