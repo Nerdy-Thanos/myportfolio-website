@@ -47,9 +47,7 @@ urllib3==1.26.13
 Werkzeug==2.2.2
 wincertstore==0.2
 wrapt==1.14.1
-cmake
 imutils
-dlib
 opencv-python-headless
 flask-socketio
 gevent-websocket
