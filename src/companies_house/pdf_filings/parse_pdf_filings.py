@@ -1,7 +1,3 @@
-from pandas import DataFrame
-import io
-import base64
-from pathlib import Path
 
 from src.companies_house.ch_object import CompaniesHouseService
 from src.companies_house.filings.fetch import get_filings_details

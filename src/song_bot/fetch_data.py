@@ -1,7 +1,8 @@
-import tensorflow as tf
+
 
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.utils import to_categorical
 
 # Other imports for processing data
 import string
@@ -71,5 +72,5 @@ def preprocess_corpus(corpus, tokenizer, total_words):
     # Split sequences between the "input" sequence and "output" predicted word
     input_sequences, labels = sequences[:, :-1], sequences[:, -1]
     # One-hot encode the labels
-    one_hot_labels = tf.keras.utils.to_categorical(labels, num_classes=total_words)
+    one_hot_labels = to_categorical(labels, num_classes=total_words)
     return input_sequences, max_sequence_len, one_hot_labels
