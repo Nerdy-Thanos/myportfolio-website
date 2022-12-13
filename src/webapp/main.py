@@ -16,6 +16,7 @@ import cv2
 from flask_socketio import SocketIO, emit
 from engineio.payload import Payload
 from threading import Thread
+import cmake
 
 app = create_app()
 

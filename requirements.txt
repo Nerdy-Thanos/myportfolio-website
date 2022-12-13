@@ -2,7 +2,6 @@ absl-py==1.3.0
 astunparse==1.6.3
 cachetools==5.2.0
 charset-normalizer==2.1.1
-
 click==8.1.3
 colorama==0.4.6
 Flask==2.2.2
@@ -58,4 +57,3 @@ opencv-python-headless
 flask-socketio
 gevent-websocket
 eventlet
-python-poppler
