@@ -1,21 +1,16 @@
-import base64
 import random
-import time
-from ..mask_detection.test import load_models, recognise_mask
 from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
 from ..song_bot.train import model_architecture, train_model
 from logging import StreamHandler
-from .helper_functions import clean_output, readb64
+from .helper_functions import clean_output
 from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
 from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
 from flask import render_template,request, send_from_directory, redirect, url_for
-from cv2 import imencode, IMWRITE_JPEG_QUALITY
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO
 from engineio.payload import Payload
-from threading import Thread
 
 app = create_app()
 
@@ -79,43 +74,6 @@ def SongBotPredict(artist):
 	loaded_model = load_saved_model(artist)
 	lyrics = predict_next_words(loaded_model, artist, userText, int(num_words))
 	return render_template("chatbot_predict.html",lyrics=lyrics, artist=artist)
-
-@app.route("/FaceMasks")
-def FaceMasks():
-	return render_template("mask.html")
-
-@socketio.on('catch-frame')
-def catch_frame(data):
-
-	emit('response_back', data)  
-
-@socketio.on('image')
-def image(data_image):
-	time.sleep(0.5)
-	read_thread = Thread(target=readb64, args=(data_image,))
-	load_thread = Thread(target=load_models, args=())
-
-	read_thread.start()
-	load_thread.start()
-
-	frame = (readb64(data_image))
-	
-	face_detection_model, mask_detection_model = load_models()
-
-	predict_thread = Thread(target=recognise_mask, args=(frame, face_detection_model, mask_detection_model, ))
-	predict_thread.start()
-	predict_thread.join()
-
-	output_frame = recognise_mask(frame, face_detection_model, mask_detection_model)
-	imgencode = imencode('.jpeg', output_frame,[IMWRITE_JPEG_QUALITY,40])[1]
-
-	# base64 encode
-	stringData = base64.b64encode(imgencode).decode('utf-8')
-	b64_src = 'data:image/jpeg;base64,'
-	stringData = b64_src + stringData
-
-	# emit the frame back
-	emit('response_back', stringData)
 	
 if __name__=="__main__":
 	socketio.run(processes=8)
