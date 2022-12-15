@@ -48,6 +48,9 @@ def select_path(type):
 
     elif type == "coldplay":
         path = "src/song_bot/archive/csv/ColdPlay.csv"
+    
+    elif type=="ariana":
+        path = "src/song_bot/archive/csv/ArianaGrande.csv"
 
     else:
         path = "src/song_bot/archive/csv/PostMalone.csv"
@@ -58,7 +61,7 @@ def make_corpus_for_prediction(type):
 
     path = select_path(type)
     # Read the dataset from csv - just first 10 songs for now
-    dataset = pd.read_csv(path, dtype=str).head(10)
+    dataset = pd.read_csv(path, dtype=str).head(40)
     # Create the corpus using the 'text' column containing lyrics
     corpus = create_lyrics_corpus(dataset, "Lyric")
     # Tokenize the corpus
@@ -104,6 +107,8 @@ def select_model_path(type):
     elif type == "coldplay":
         path = "ColdPlay.h5"
 
+    elif type == "ariana":
+        path = "ArianaGrande.h5"
     else:
         path = None
     return path

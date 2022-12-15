@@ -33,7 +33,7 @@ def train_model(model, input_sequences, one_hot_labels):
         verbose=1,
         callbacks=[cp_callback],
     )
-    model.save("ColdPlay.h5")
+    model.save("Beyonce.h5")
 
 
 def load_latest_model_weights(model):
