@@ -1,9 +1,9 @@
 
-FROM nvcr.io/nvidia/driver
+FROM nvidia/driver
 
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
 
-FROM nvcr.io/nvidia/cuda
+FROM nvidia/cuda
 
 CMD nvidia-smi
 
