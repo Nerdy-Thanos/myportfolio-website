@@ -1,12 +1,10 @@
-import random
+
+from ..gan.gen import generate_image
 from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
 from sys import stdout
 from ..song_bot.train import model_architecture, train_model
 from logging import StreamHandler
-from .helper_functions import clean_output
-from ..companies_house.pdf_filings.fetch_pdf_filings import extract_filings_documents
-from ..companies_house.pdf_filings.random import random_company_list
 from . import create_app
 from flask import render_template,request, send_from_directory, redirect, url_for
 from flask_socketio import SocketIO
@@ -39,6 +37,19 @@ def TrainSongBot():
 	model = model_architecture(max_sequence_len=max_sequence_len, total_words=total_words) 
 	train_model(model, input_sequences=input_sequences, one_hot_labels=one_hot_labels)
 	return "Model Trained"
+
+@app.route("/GenerateImages", methods=["GET","POST"])
+def GenerateImages():
+	if request.method=="POST":
+		image = generate_image()
+		return redirect(url_for("GenerateVideo", image=image))
+	return render_template("gan.html")
+
+@app.route("/<image>/GenerateVideo", methods=["GET","POST"])
+def GenerateVideo(image):
+	#if request.method=="POST":
+	#	return redirect()
+	return render_template("image.html", image=image)
 
 @app.route("/SongBot", methods=["GET", "POST"])
 def SongBot():

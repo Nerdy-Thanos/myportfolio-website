@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="main-content">
+
+    <main>  
+        <div class="section">
+            <h1 class="intro"> GenBot- A Simple 2.5 Dim Image Generator.
+            </h1>
+            <div class="header">
+                <p class="highlight-text"><span>Hi! I'm GenBot! Nice to Meet you.</span></p>
+            </div>
+            <p>Click to generate Image: </p>
+
+            <div id="form">
+                <form action="{{ url_for('GenerateImages') }}" method="post" id="Form" name="Form">
+                    <button class="main-btn" type="submit" value="Generate Image"> <span class="btn-text"> Generate Image </span></button>
+                </form>
+            </div>
+        </div>
+        <div id="section">
+            <p>
+                Tech Stack: <br>
+                Python - Backend processing<br>
+                TensorFlow - Framework on which the model was built
+                <br><br>
+                API calls:<br>
+                REST API calls to CompaniesHouse<br>
+                REST API calls to Python Backend from Flask
+            </p>
+        </div>
+    </main>
+
+    <div class="controls">
+        <div class="control active-btn">
+            <a href="{{ url_for('hello') }}">
+            <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <p class="highlight-text"> Home</p>
+        
+    </div>
+    <div class="theme-btn">
+        <i class="fas fa-adjust"></i>
+    </div>
+    <script src="{{ url_for('static',filename='js/app.js') }}"></script>
+    
+</body>
+</html>
