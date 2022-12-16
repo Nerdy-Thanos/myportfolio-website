@@ -22,18 +22,19 @@
             <div class="header">
                 <p class="highlight-text"><span>Hi! I'm GenBot! Nice to Meet you.</span></p>
             </div>
-            <p>Click to generate a Random Image: </p>
+            
 
-            <div id="form">
-                <form action="{{ url_for('GenerateVideo') }}" method="post" id="Form" name="Form">
-                    <button class="main-btn" type="submit" value="Generate Image"> <span class="btn-text"> Generate Image </span></button>
+            <div class="form">
+                <p>Click to generate a Random Image: </p>
+                <form action="{{ url_for('GenerateImages') }}" method="post" id="Form" name="Form">
+                    <button class="main-btn" type="submit" name = "image" value="Generate Image"> <span class="btn-text"> Generate Image </span></button>
                 </form>
             </div>
         </div>
         <br><br>
         <p class="highlight-text">Your Generated Image:</p>
         <div id="imageElement">
-            <img src="{{ image }}">
+            <img src= "{{ image }}" alt="image">
         </div>
         <div id="section">
             <p>

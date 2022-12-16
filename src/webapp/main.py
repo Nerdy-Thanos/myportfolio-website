@@ -9,6 +9,9 @@ from . import create_app
 from flask import render_template,request, send_from_directory, redirect, url_for
 from flask_socketio import SocketIO
 from engineio.payload import Payload
+from base64 import b64encode
+from io import BytesIO
+
 
 app = create_app()
 
@@ -40,16 +43,15 @@ def TrainSongBot():
 
 @app.route("/GenerateImages", methods=["GET","POST"])
 def GenerateImages():
+	image=None
 	if request.method=="POST":
 		image = generate_image()
-		return redirect(url_for("GenerateVideo", image=image))
+		image = image.resize((640,480))
+		image_io = BytesIO()
+		image.save(image_io, 'PNG')
+		dataurl = 'data:image/png;base64,' + b64encode(image_io.getvalue()).decode('ascii')
+		return render_template("image.html", image=dataurl)
 	return render_template("gan.html")
-
-@app.route("/<image>/GenerateVideo", methods=["GET","POST"])
-def GenerateVideo(image):
-	#if request.method=="POST":
-	#	return redirect()
-	return render_template("image.html", image=image)
 
 @app.route("/SongBot", methods=["GET", "POST"])
 def SongBot():
