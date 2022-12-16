@@ -16,7 +16,7 @@ COPY . .
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
-RUN python -m pip install torch==1.12.0+cpu torchvision==0.13.0+cpu torchaudio==0.13.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN python -m pip install torch>=1.12.0+cpu torchvision==0.13.0+cpu torchaudio==0.12.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
 RUN python -m pip install git+https://github.com/lukemelas/pytorch-pretrained-gans
 
