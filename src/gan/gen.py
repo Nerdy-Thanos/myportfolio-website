@@ -1,7 +1,7 @@
-import torch
+from torch import squeeze
 from pytorch_pretrained_gans import make_gan
 import torchvision.transforms as T
-import cv2
+from cv2 import cvtColor, COLOR_RGB2GRAY
 from numpy import array
 from PIL import Image
 
@@ -11,10 +11,10 @@ def generate_image():
     z = G.sample_latent(batch_size=1)  # -> torch.Size([1, 128])
     x = G(z=z, y=y)
     x = x.detach().cpu()
-    img_trans = torch.squeeze(x, dim=0)
+    img_trans = squeeze(x, dim=0)
     transform = T.ToPILImage()
     img = transform(img_trans)
-    img_col = cv2.cvtColor(array(img), cv2.COLOR_RGB2GRAY)
+    img_col = cvtColor(array(img), COLOR_RGB2GRAY)
     image = Image.fromarray(img_col)
 
     return image

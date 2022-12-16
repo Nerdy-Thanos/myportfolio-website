@@ -52,4 +52,4 @@ opencv-python-headless
 flask-socketio
 gevent-websocket
 eventlet
-git+https://github.com/lukemelas/pytorch-pretrained-gans
+
