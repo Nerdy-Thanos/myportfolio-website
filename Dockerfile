@@ -1,18 +1,12 @@
 
-FROM nvidia/driver
-
-RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
-
-FROM nvidia/cuda
-
-CMD nvidia-smi
-
-RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl
-
-
 FROM python:3.10.8-slim-buster
 
+
 ENV PYTHONDONTWRITEBYTECODE=1
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
 
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
