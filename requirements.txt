@@ -52,4 +52,5 @@ opencv-python-headless
 flask-socketio
 gevent-websocket
 eventlet
-
+boto3
+tqdm
