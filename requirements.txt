@@ -54,3 +54,4 @@ gevent-websocket
 eventlet
 boto3
 tqdm
+scipy
