@@ -14,6 +14,9 @@ ENV PYTHONUNBUFFERED=1
 COPY . .
 
 COPY requirements.txt .
+
+RUN python -m pip install --upgrade pip 
+
 RUN python -m pip install -r requirements.txt
 
 RUN python -m pip install torch>=1.12.1+cpu torchvision==0.13.1+cpu torchaudio==0.12.1+cpu -f https://download.pytorch.org/whl/torch_stable.html

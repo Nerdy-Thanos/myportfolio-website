@@ -52,6 +52,15 @@ def select_path(type):
     elif type=="ariana":
         path = "src/song_bot/archive/csv/ArianaGrande.csv"
 
+    elif type == "billie":
+        path = "src/song_bot/archive/csv/BillieEilish.csv"
+    
+    elif type == "dualipa":
+        path = "src/song_bot/archive/csv/DuaLipa.csv"
+    
+    elif type=="khalid":
+        path = "src/song_bot/archive/csv/Khalid.csv"
+
     else:
         path = "src/song_bot/archive/csv/PostMalone.csv"
     return path
@@ -99,16 +108,25 @@ def preprocess_corpus(corpus, tokenizer, total_words):
 
 def select_model_path(type):
     if type == "maroon5":
-        path = "Maroon5.h5"
+        path = "src/song_bot/models/Maroon5.h5"
 
     elif type == "postmalone":
-        path = "PostMalone.h5"
+        path = "src/song_bot/models/PostMalone.h5"
 
     elif type == "coldplay":
-        path = "ColdPlay.h5"
+        path = "src/song_bot/models/ColdPlay.h5"
 
     elif type == "ariana":
-        path = "ArianaGrande.h5"
+        path = "src/song_bot/models/ArianaGrande.h5"
+    
+    elif type == "billie":
+        path = "src/song_bot/models/BillieEilish.h5"
+    
+    elif type == "dualipa":
+        path = "src/song_bot/models/DuaLipa.h5"
+    
+    elif type=="khalid":
+        path = "src/song_bot/models/Khalid.h5"
     else:
         path = None
     return path

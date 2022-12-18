@@ -81,7 +81,6 @@ def StockEDA():
 		start = request.form.get("start")
 		end = request.form.get("end")
 		data = fetch_data(stock, start, end)
-
 		plot_all_stocks(data, stock)
 		plot_volume(data, stock)
 		multi_variate_analysis(data)

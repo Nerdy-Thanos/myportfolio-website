@@ -17,7 +17,7 @@
             <div class="left-header">
                 <div class="h-shape"></div>
                 <div class="image">
-                    <img src="{{ url_for('static', filename='img/display_pic.png') }}" alt="">
+                    <img src="{{ url_for('static', filename='img/cover.png') }}" alt="">
                 </div>
             </div>
             <div class="right-header">
@@ -59,7 +59,7 @@
                         <br><br> I am currently on a <span class="highlight-text">Skilled Worker Visa</span> sponsored by current employer and will require visa sponsorship for a new role.
                     </p>
                     <div class="btn-con">
-                        <a href="#" class="main-btn">
+                        <a href="{{ url_for('DownloadResume') }}" class="main-btn">
                             <span class="btn-text">Download CV</span>
                             <span class="btn-icon"><i class="fas fa-download"></i></span>
                         </a>
@@ -70,7 +70,7 @@
                         <div class="abt-text">
                             <p class="large-text">7+ Projects</p>
                             <p class="small-text"><br> Deployed and used in Production to date</p>
-                            <br><br><p class="small-text">1. Accurately calculate VAT returns by parsing company transactions for VAT data (VAT product at Adsum Technologies)</p>
+                            <br><br><p class="small-text">1. Accurately calculate VAT returns by parsing company's invoices for VAT on purchases/sales (VAT product at Adsum Technologies)</p>
                             <br><br><p class="small-text">2. Create an <span class="highlight-text"> end-to-end lead/revenue generation tool</span> that can parse company financial data to identify suitable users for the above VAT product (Adsum Technologies)</p>
                             <br><br><p class="small-text">3. Build, train and deploy a <span class="highlight-text"> computer vision model </span> to monitor safety standards followed by employees at CavinKare's Factory outlets (CavinKare)</p>
                         </div>
@@ -180,14 +180,12 @@
                     <h5>Data Engineer<span> - Adsum Technologies, London</span></h5>
                     <p>
                         
-                        <br><br>Building Data Pipelines on Airflow to ensure complete data flow from source to final prediction models.
-                        <br><br>Maintaining the integrity of data with constant monitoring, testing and cleaning pipelines setup in each
-                        stage of the data flow to ensure high quality and complete data is present for the models.
-                        <br><br>Building Text classification models to classify and categorise financial transactions and group them
-                        accordingly.
-                        <br><br>Setting up AWS S3 instances to store and retrieve data from pipelines and update data in storage.
-                        <br><br>Revenue generation tool that parses accounting filings data from CompaniesHouse (gov.uk) to
-                        identify potential leads for the marketing team and help with data-driven marketing.
+                        <br><br>Built Data Pipelines on Airflow to ensure complete data flow from source to final prediction models <span class="highlight-text"> within 10 seconds to 2 minutes</span> depending on the size of the chunk of data.
+                        <br><br>Maintaining the integrity of data with constant monitoring, 
+                        testing and cleaning pipelines setup in each stage of the data flow to ensure high quality and complete data is present for the models.
+                        <br><br>Training Text classification models to classify and categorise financial transactions with an accuracy of <span class="highlight-text">~91%</span> and group them accordingly.
+                        <br><br>Setting up AWS S3 instances to store and retrieve data from pipelines and update data in storage, ensuring real time data updates for product dashboards within <span class="highlight-text">3 seconds</span>.
+                        <br><br>Built a Revenue generation tool that parses accounting filings data from CompaniesHouse (gov.uk) to identify potential leads for the marketing team and help saving <span class="highlight-text">40-50 hours</span> of market research time per week.
                         
                     </p>
                 </div>
@@ -199,8 +197,8 @@
                     <h5>Machine Learning Engineer<span> - CavinKare, India</span></h5>
                     <p>
                         <br><br> Implemented a deep learning-based face-recognition attendance system to replace traditional biometrics and scaled it up to recognise up to 500 employees.
-                        <br><br> Built and deployed a computer-vision pipeline with a consistent accuracy of around 92% on Microsoft Azure to monitor employee safety and report hazards thus reducing off-time security load.
-                        <br><br> Developed a parsing tool to generate structured data from unstructured purchase orders and bills using OCR techniques and text similarity for validation.
+                        <br><br> Built and deployed a computer-vision pipeline with a consistent accuracy of around <span class="highlight-text"> 92%</span> on Microsoft Azure to monitor employee safety and report hazards thus reducing off-time security requirement by <span class="highlight-text"> 30 hours per week</span>.
+                        <br><br> Developed a parsing tool to generate structured data from unstructured purchase orders and bills using OCR techniques and text similarity saving up to <span class="highlight-text"> 20 hours</span> of manual-hours per week.
                         <br><br> Worked closely with the team and upper management to build a chatbot using Microsoft LUIS to answer employee queries about company policies.
                         <br><br> Analysed sales and logistics data using interactive data visualization to identify seasonality and trends to predict high demand products and peak times.
                     </p>
@@ -208,7 +206,7 @@
 
                 <div class="timeline-item">
                     <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-school"></i>
                     </div>
                     <p class="tl-duration">September 2021 - September 2022</p>
                     <h5>MSc in Data Science<span> - University of Glasgow</span></h5>
@@ -218,7 +216,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="tl-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-school"></i>
                     </div>
                     <p class="tl-duration">June 2015 - June 2019</p>
                     <h5>Bachelors Degree in Computer Science<span> - SRM University</span></h5>
