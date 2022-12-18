@@ -1,4 +1,5 @@
 
+from src.stock.pred import clean_static_dir, daily_change, fetch_data, multi_variate_analysis, plot_all_stocks, plot_volume
 from ..gan.gen import generate_image
 from ..song_bot.fetch_data import make_dataset
 from ..song_bot.load_and_predict import load_saved_model, predict_next_words
@@ -11,6 +12,7 @@ from flask_socketio import SocketIO
 from engineio.payload import Payload
 from base64 import b64encode
 from io import BytesIO
+
 
 
 app = create_app()
@@ -70,6 +72,27 @@ def SongBotPredict(artist):
 	loaded_model = load_saved_model(artist)
 	lyrics = predict_next_words(loaded_model, artist, userText, int(num_words))
 	return render_template("chatbot_predict.html",lyrics=lyrics, artist=artist)
+
+@app.route("/StockEDA", methods=["GET","POST"])
+def StockEDA():
+	if request.method=="POST":
+		clean_static_dir()
+		stock = request.form["stock"]
+		start = request.form.get("start")
+		end = request.form.get("end")
+		data = fetch_data(stock, start, end)
+
+		plot_all_stocks(data, stock)
+		plot_volume(data, stock)
+		multi_variate_analysis(data)
+		daily_change(data)
+		return redirect(url_for("StockEDAResults"))
+	return render_template("stock.html")
+
+@app.route("/StockEDAResults", methods=["GET","POST"])
+def StockEDAResults():
+	return render_template("stock_results.html")
 	
+
 if __name__=="__main__":
 	socketio.run(processes=8)

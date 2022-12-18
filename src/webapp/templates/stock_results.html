@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="main-content">
+    <h1 class="intro">EDA Plots</h1>
+    <header class="container header active" id="home">
+        <div class="header-content">
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="{{ url_for('static', filename='img/graphs/all.png') }}" alt="">
+                </div>
+            </div>
+            <div class="right-header">
+                <p class="highlight-text">This graph visualizes all of the features of the stock data.
+                    Tells us the overall performance over a period of time of the stock.
+                </p>
+            </div>
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="{{ url_for('static', filename='img/graphs/daily.png') }}" alt="">
+                </div>
+            </div>
+            <div class="right-header">
+                <p class="highlight-text">This graph visualizes the daily change of the stock price.
+                    Tells us the daily performance over a period of time of the stock.
+                </p>
+            </div>
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="{{ url_for('static', filename='img/graphs/multi.png') }}" alt="">
+                </div>
+            </div>
+            <div class="right-header">
+                <p class="highlight-text">This graph visualizes all of the features of the stock data with respect to each other.
+                    Tells us the correlation and dependence of the features on each other
+                </p>
+            </div>
+            <div class="left-header">
+                <div class="h-shape"></div>
+                <div class="image">
+                    <img src="{{ url_for('static', filename='img/graphs/volume.png') }}" alt="">
+                </div>
+            </div>
+            <div class="right-header">
+                <p class="highlight-text">This graph visualizes the volume of the stocks traded.
+                    Tells us the daily performance of trades over a period of time of the stock.
+                </p>
+            </div>
+    <main>  
+        <div class="section">
+            <h1 class="intro"> Exploratory data analysis of stock Price of a company.
+            </h1>
+            <div class="header">
+                <p class="highlight-text"><span>Fetch data from yahoo Finance and analyse</span></p>
+            </div>
+                <div id="form">
+                <form action="{{ url_for('StockEDA') }}" method="post" id="Form" name="Form">
+                    <label for="stock">Choose a Company's stock to analyse: </label>
+                    <select id="stock" name="stock">
+                    <option value="AAPL">Apple Inc.</option>
+                    <option value="MSFT">Microsoft Corporation</option>
+                    <option value="GOOG">Google</option>
+                    <option value="AMZN">Amazon.com Inc.</option>
+                    <option value="TSLA">Tesla Inc.</option>
+                    <option value="JNJ">Johnson & Johnson</option>
+                    <option value="V">Visa Inc.</option>
+                    <option value="NVDA">NVIDIA Corporation</option>
+                    <option value="WMT">Walmart Inc.</option>
+                    <option value="NFLX">Netflix</option>
+                    <option value="JPM">JP Morgan Chase & Co</option>
+                    <option value="PG">Proctor & Gamble Company</option>
+                    <option value="MA">MasterCard Incorporated</option>
+                    <option value="HD">Home Depot Inc.</option>
+                    <option value="META">Meta Platforms Inc.</option>
+                    <option value="PFE">Pfizer Inc.</option>
+                    </select>
+                    <label for="start">Choose Start Date: </label>
+                    <input type="date" id="start" name="start" required>
+                    <br><br>
+                    <label for="end">Choose End Date: </label>
+                    <input type="date" id="end" name="end" onchange="TDate()" required>
+                    <br><br>
+                    <button class="main-btn" type="submit" value="Fetch and Analyse"> <span class="btn-text"> Fetch and Analyse </span></button>
+                </form>
+
+                <script type="text/javascript">
+                    var start = document.getElementById('start');
+                    var end = document.getElementById('end');
+    
+                    start.addEventListener('change', function() {
+                        if (start.value)
+                            end.min = start.value;
+                    }, false);
+
+                    end.addEventLiseter('change', function() {
+                        if (end.value)
+                            start.max = end.value;
+                    }, false);
+    
+                    end.addEventListener('change',function(){
+                        var ToDate = new Date();
+                        if (new Date(end).getTime() <= ToDate.getTime()) 
+                            alert("The Date must be Lesser or Equal to today date"); 
+                    }, false);
+                  </script>
+                </div>
+        </div>
+        <div id="section">
+            <p>
+                Tech Stack: <br>
+                Python - Backend processing<br>
+                yFinance - API to fetch stock data from
+                <br><br>
+                API calls:<br>
+                REST API calls to yFinance<br>
+                REST API calls to Python Backend from Flask
+            </p>
+        </div>
+    </main>
+        </div>
+    <div class="controls">
+        <div class="control active-btn">
+            <a href="{{ url_for('hello') }}">
+            <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <p class="highlight-text"> Home</p>
+        
+    </div>
+    <div class="theme-btn">
+        <i class="fas fa-adjust"></i>
+    </div>
+    <script src="{{ url_for('static',filename='js/app.js') }}"></script>
+    
+</body>
+</html>

@@ -55,3 +55,6 @@ eventlet
 boto3
 tqdm
 scipy
+yfinance
+matplotlib
+seaborn
