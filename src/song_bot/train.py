@@ -28,12 +28,12 @@ def train_model(model, input_sequences, one_hot_labels):
     model.fit(
         input_sequences,
         one_hot_labels,
-        batch_size=64,
-        epochs=200,
+        batch_size=128,
+        epochs=150,
         verbose=1,
         callbacks=[cp_callback],
     )
-    model.save("Beyonce.h5")
+    model.save("PostMalone.h5")
 
 
 def load_latest_model_weights(model):
