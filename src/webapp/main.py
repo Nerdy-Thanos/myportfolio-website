@@ -34,7 +34,7 @@ def hello():
 
 @app.route("/DownloadResume", methods=["GET"])
 def DownloadResume():
-	return send_from_directory("static","resume/Vignesh_Resume.pdf", as_attachment=True, download_name="Vignesh_Resume.pdf")
+	return send_from_directory("static","resume/Vignesh_Resume_base.docx", as_attachment=True, download_name="Vignesh_Resume.docx")
 
 @app.route("/TrainSongBot")
 def TrainSongBot():
